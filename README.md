@@ -271,19 +271,3 @@ This project is built for **educational purposes only**.
 Users are responsible for complying with YouTube's Terms of Service.
 
 ---
-
-# 🌟 Support
-
-If you like this project, consider giving it a ⭐ on GitHub.
-
----
-
-# 🔗 Connect With Me
-
-GitHub: [https://github.com/iitmkushal2506](https://github.com/iitmkushal2506)
-
----
-
-# 🚀 Happy Coding
-
-Made with ❤️ by **Kushal Batra**
