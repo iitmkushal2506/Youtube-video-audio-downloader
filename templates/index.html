@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YouTube Downloader</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #e5e5e5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #1a1a1a;
+            padding: 25px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 750px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        input {
+            background: #2a2a2a;
+            color: white;
+        }
+
+        button {
+            background: linear-gradient(45deg, #444, #888);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #666, #aaa);
+        }
+
+        .btn-mp3 {
+            background: linear-gradient(45deg, #333, #777);
+        }
+
+        iframe {
+            width: 100%;
+            height: 320px;
+            border: none;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .title {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .description-section {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 750px;
+            margin-bottom: 30px;
+        }
+
+        .description-section h2 {
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .description-section h3 {
+            margin-top: 20px;
+            color: #bdbdbd;
+        }
+
+        .description-section p {
+            margin-top: 10px;
+            line-height: 1.6;
+            color: #d1d5db;
+        }
+
+        .description-section ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #999;
+        }
+
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>YouTube Downloader</h1>
+
+        <form method="POST">
+
+            <input type="text" name="url" placeholder="Paste YouTube URL" required>
+
+            <button type="submit">
+                Fetch Video
+            </button>
+
+        </form>
+
+        {% if title %}
+
+        <div class="title">
+            {{title}}
+        </div>
+
+        <iframe src="https://www.youtube.com/embed/{{video_id}}" allowfullscreen>
+        </iframe>
+
+        <form method="POST" action="/download_mp4">
+            <input type="hidden" name="url" value="{{url}}">
+            <button type="submit">
+                Download MP4 (Best Quality)
+            </button>
+        </form>
+
+        <form method="POST" action="/download_mp3">
+            <input type="hidden" name="url" value="{{url}}">
+            <button class="btn-mp3" type="submit">
+                Download MP3
+            </button>
+        </form>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="description-section">
+
+        <h2>About This Project</h2>
+
+        <p>
+            This YouTube Video Downloader is a web-based application built using Python Flask that allows users
+            to download YouTube videos and audio by simply pasting the video link. The application processes
+            the URL, extracts video information, and provides download options in MP4 and MP3 formats.
+        </p>
+
+        <p>
+            This project is designed to run locally on your machine. Due to platform restrictions and YouTube
+            policies, this application is not intended for deployment on public hosting platforms. It works best
+            when executed locally.
+        </p>
+
+        <h3>Purpose of This Project</h3>
+
+        <p>
+            This project was developed as part of learning backend development using Python Flask. It demonstrates
+            how frontend and backend systems interact to process user inputs, retrieve external content, and
+            serve downloadable files dynamically.
+        </p>
+
+        <h3>Technologies Used</h3>
+
+        <ul>
+            <li>Python</li>
+            <li>Flask Framework</li>
+            <li>yt-dlp</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>Jinja2 Template Engine</li>
+        </ul>
+
+        <h3>Concepts Implemented</h3>
+
+        <ul>
+            <li>Backend Routing</li>
+            <li>Form Handling</li>
+            <li>Dynamic Template Rendering</li>
+            <li>Video Metadata Extraction</li>
+            <li>File Handling and Streaming</li>
+            <li>Responsive UI Design</li>
+        </ul>
+
+        <h3>How It Works</h3>
+
+        <p>
+            Users paste a YouTube link into the input box and click fetch video. The backend uses yt-dlp to
+            extract video information, displays a preview, and provides download options. Once the user clicks
+            download, the server processes the request and sends the file to the user.
+        </p>
+
+        <h3>Run This Project Locally</h3>
+
+        <p>Follow these steps to run this project locally after cloning from GitHub:</p>
+
+        <ul>
+            <li>Clone the repository from GitHub</li>
+            <li>Open the project folder in your code editor</li>
+            <li>Install dependencies using: pip install flask yt-dlp</li>
+            <li>Make sure Python is installed on your system</li>
+            <li>Run the app using: python app.py</li>
+            <li>Open browser and go to: http://127.0.0.1:5000</li>
+        </ul>
+
+        <h3>Note</h3>
+
+        <p>
+            If the video preview is not playable after fetching, do not worry. This may happen due to YouTube
+            embed restrictions on certain videos. You can still download the video or audio using the download
+            buttons provided.
+        </p>
+    </div>
+
+
+    <footer>
+
+        <p>
+            Built by Kushal Batra
+            <a href="https://github.com/iitmkushal2506" target="_blank">
+                View My GitHub iitmkushal2506
+            </a>
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
